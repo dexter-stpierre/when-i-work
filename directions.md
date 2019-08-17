@@ -6,32 +6,32 @@ the API to view, create, edit, and delete a shift.
 Feel free to use any libraries/frameworks that will help you complete the project.
 Please provide a means for someone to checkout your project and run it.
 
-##Requirements:
+## Requirements:
 
-###List shifts
+### List shifts
 
 The API should be able to list all shifts ordered by the start time. It should be able to restrict the
 shifts returned by the start and end time.
 
-###View a shift
+### View a shift
 
 The API should be able to view a single shift by id.
 
-###Create a shift
+### Create a shift
 
 The API should allow a user to create a new shift. A shift cannot overlap with any existing shift
 for the same user.
 
-###Edit a shift
+### Edit a shift
 
 The API should allow editing the start or end time of any shift. No other fields are editable. The
 same time requirements for creating a shift also apply.
 
-###Delete a shift
+### Delete a shift
 
 The API should be able to delete any shift.
 
-##Bonus
+## Bonus
 You may go above and beyond by implementing any of the following features. This will allow us
 to better assess your capabilities, but is not required. Incompletion of these items will not
 negatively impact the evaluation of the challenge.
