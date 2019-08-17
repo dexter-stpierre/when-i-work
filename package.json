@@ -4,7 +4,16 @@
   "description": "Code challenge for When I work",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:watch": "tsc-watch -p tsconfig.json",
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -fR dist/",
+    "dev": "npm run build && npm run watch",
+    "lint": "npx tslint -c tslint.json -p tsconfig.json",
+    "serve:watch": "npx nodemon --inspect dist/server.js",
+    "serve": "node dist/server.js",
+    "start": "npm run serve",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"Serve,Build\" \"npm:serve:watch\" \"npm:build:watch\""
   },
   "repository": {
     "type": "git",
