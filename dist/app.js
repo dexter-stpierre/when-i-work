@@ -4,12 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const shift_1 = require("./api/shift");
 class App {
     constructor() {
         this.express = express_1.default();
         this.routes();
     }
     routes() {
+        this.express.use('/shifts', shift_1.shiftRouter);
         this.express.use('/*', (_, res) => {
             res.send('Hello World');
         });

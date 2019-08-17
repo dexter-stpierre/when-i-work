@@ -13,10 +13,10 @@ export class ShiftRouter {
   }
 
   init() {
-    this.router.post('/shift', this.createShift);
+    this.router.post('/', this.createShift);
   }
 }
 
-const userRoutes = new UserRouter().router;
+export const shiftRouter = new ShiftRouter().router;
 
-export default userRoutes;
+export default shiftRouter;

@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+import { shiftRouter } from './api/shift';
 
 class App {
   public express: express.Application;
@@ -9,6 +10,7 @@ class App {
   }
 
   private routes(): void {
+    this.express.use('/shifts', shiftRouter)
     this.express.use('/*', (_: Request, res: Response) => {
       res.send('Hello World');
     });
