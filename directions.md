@@ -36,17 +36,19 @@ You may go above and beyond by implementing any of the following features. This 
 to better assess your capabilities, but is not required. Incompletion of these items will not
 negatively impact the evaluation of the challenge.
 
-● Add a UI
-● Add an authentication/authorization system
-● Add a user system with manager and employee roles
-● Add similar API operations for users
-● Restrict Shift operations based on user role
-● Host the project somewhere
-● Unit/Functional testing
-● Postman file
-● API documentation
-Submission Requirements:
-● Please complete this challenge within 5 days of receipt.
-● Challenges that use a code generator to complete the challenge will not be accepted.
-● Please host the project or provide clear instructions for how to run it locally.
+- Add a UI
+- Add an authentication/authorization system
+- Add a user system with manager and employee roles
+- Add similar API operations for users
+- Restrict Shift operations based on user role
+- Host the project somewhere
+- Unit/Functional testing
+- Postman file
+- API documentation
+
+## Submission Requirements:
+
+- Please complete this challenge within 5 days of receipt.
+- Challenges that use a code generator to complete the challenge will not be accepted.
+- Please host the project or provide clear instructions for how to run it locally.
 Feel free to reach out to the When I Work team with questions.
