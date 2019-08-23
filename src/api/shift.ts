@@ -14,6 +14,7 @@ export class ShiftRouter {
   private init() {
     this.router.get('/', this.getShifts);
     this.router.post('/', this.createShift);
+    this.router.patch('/:id', this.updateShift);
   }
 
   private createShift(req: Request, res: Response, next: NextFunction) {
@@ -50,6 +51,18 @@ export class ShiftRouter {
       where,
     }).then((shifts) => {
       res.send(shifts);
+    });
+  }
+
+  private updateShift(req: Request, res: Response, next: NextFunction) {
+    const { start, end } = req.body;
+    const shiftId = req.param('id');
+    Shift.findOne(shiftId).then((shift) => {
+      shift.start = start;
+      shift.end = end;
+      shift.save().then((savedShift) => {
+        res.send(savedShift);
+      });
     });
   }
 }
