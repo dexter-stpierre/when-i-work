@@ -22,8 +22,12 @@ class App {
   }
 
   private hasAuth(req: Request, res: Response, next: NextFunction) {
-    const [, authHeader] = req.header('Authorization').split(' ');
-    if (authHeader !== process.env.API_KEY) {
+    const authHeader = req.header('Authorization');
+    if (!authHeader) {
+      return res.sendStatus(401);
+    }
+    const [, token] = authHeader.split(' ');
+    if (token !== process.env.API_KEY) {
       return res.sendStatus(401);
     }
     next();
