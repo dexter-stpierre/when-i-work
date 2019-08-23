@@ -76,7 +76,7 @@ export class ShiftRouter {
     const { id } = req.params;
     Shift.delete(id)
       .then(() => {
-        res.send(204);
+        res.sendStatus(204);
       })
       .catch((error) => {
         res.status(500).send(error.message);
