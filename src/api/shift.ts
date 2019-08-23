@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response, Router } from 'express';
+import { FindConditions } from 'typeorm';
 
 import { Shift } from '../entities/shift';
 
@@ -31,10 +32,22 @@ export class ShiftRouter {
   }
 
   private getShifts(req: Request, res: Response, next: NextFunction) {
+    // console.log(req.params);
+    const { start, end } = req.query;
+    // constructing the where clause in this way handles if start or end are null while putting an
+    // object literal in the find method would not handle it and would search for where one of them are null
+    const where: FindConditions<Shift> = {};
+    if (start) {
+      where.start = start;
+    }
+    if (end) {
+      where.end = end;
+    }
     Shift.find({
       order: {
         start: 'ASC',
       },
+      where,
     }).then((shifts) => {
       res.send(shifts);
     });
