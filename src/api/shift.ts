@@ -56,14 +56,21 @@ export class ShiftRouter {
 
   private updateShift(req: Request, res: Response, next: NextFunction) {
     const { start, end } = req.body;
-    const shiftId = req.param('id');
-    Shift.findOne(shiftId).then((shift) => {
-      shift.start = start;
-      shift.end = end;
-      shift.save().then((savedShift) => {
+    const { id } = req.params;
+    Shift.findOne(id)
+      .then((shift) => {
+        console.log('looked for shift');
+        shift.start = start;
+        shift.end = end;
+        return Shift.save(shift);
+      })
+      .then((savedShift) => {
+        console.log('saved');
         res.send(savedShift);
+      })
+      .catch((error) => {
+        res.status(500).send(error.message);
       });
-    });
   }
 }
 

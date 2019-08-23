@@ -26,7 +26,8 @@
   },
   "homepage": "https://github.com/dexter-stpierre/when-i-work#readme",
   "devDependencies": {
-    "@types/express": "^4.17.0",
+    "@types/body-parser": "^1.17.1",
+    "@types/express": "^4.17.1",
     "@types/node": "^12.7.2",
     "concurrently": "^4.1.2",
     "nodemon": "^1.19.1",

@@ -1,11 +1,14 @@
 import {
   BaseEntity,
   BeforeInsert,
+  BeforeUpdate,
   Between,
   Column,
   Entity,
+  FindConditions,
   JoinColumn,
   ManyToOne,
+  Not,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { User } from './user';
@@ -29,18 +32,26 @@ export class Shift extends BaseEntity {
   public user: User;
 
   @BeforeInsert()
+  @BeforeUpdate()
   public async userHasShift() {
+    let where: Array<FindConditions<Shift>> = [
+      {
+        start: Between(this.start, this.end),
+        userId: this.userId,
+      },
+      {
+        end: Between(this.start, this.end),
+        userId: this.userId,
+      },
+    ];
+    if (this.id) {
+      where = where.map((whereClause) => {
+        whereClause.id = Not(this.id);
+        return whereClause;
+      });
+    }
     const shifts = await Shift.find({
-      where: [
-        {
-          start: Between(this.start, this.end),
-          userId: this.userId,
-        },
-        {
-          end: Between(this.start, this.end),
-          userId: this.userId,
-        },
-      ],
+      where,
     });
     if (shifts.length) {
       throw new Error('User already has a shift at this time');
