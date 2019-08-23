@@ -15,6 +15,7 @@ export class ShiftRouter {
     this.router.get('/', this.getShifts);
     this.router.post('/', this.createShift);
     this.router.patch('/:id', this.updateShift);
+    this.router.delete('/:id', this.deleteShift);
   }
 
   private createShift(req: Request, res: Response, next: NextFunction) {
@@ -59,14 +60,23 @@ export class ShiftRouter {
     const { id } = req.params;
     Shift.findOne(id)
       .then((shift) => {
-        console.log('looked for shift');
         shift.start = start;
         shift.end = end;
         return Shift.save(shift);
       })
       .then((savedShift) => {
-        console.log('saved');
         res.send(savedShift);
+      })
+      .catch((error) => {
+        res.status(500).send(error.message);
+      });
+  }
+
+  private deleteShift(req: Request, res: Response, next: NextFunction) {
+    const { id } = req.params;
+    Shift.delete(id)
+      .then(() => {
+        res.send(204);
       })
       .catch((error) => {
         res.status(500).send(error.message);
