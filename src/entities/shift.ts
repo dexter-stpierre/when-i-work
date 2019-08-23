@@ -1,8 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm';
 import { User } from './user';
 
 @Entity()
-export class Shift {
+export class Shift extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: string;
 

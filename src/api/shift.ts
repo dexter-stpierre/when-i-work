@@ -1,5 +1,7 @@
 import { NextFunction, Request, Response, Router } from 'express';
 
+import { Shift } from '../entities/shift';
+
 export class ShiftRouter {
   router: Router;
 
@@ -9,6 +11,8 @@ export class ShiftRouter {
   }
 
   private createShift(req: Request, res: Response, next: NextFunction) {
+    console.log(req.body);
+    Shift.save(req.body);
     res.send('Shift Created');
   }
 
