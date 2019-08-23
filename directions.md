@@ -7,7 +7,7 @@ the API to view, create, edit, and delete a shift.
 Feel free to use any libraries/frameworks that will help you complete the project.
 Please provide a means for someone to checkout your project and run it.
 
-## Requirements:
+## Requirements
 
 ### List shifts
 
@@ -48,7 +48,7 @@ negatively impact the evaluation of the challenge.
 - Postman file
 - API documentation
 
-## Submission Requirements:
+## Submission Requirements
 
 - Please complete this challenge within 5 days of receipt.
 - Challenges that use a code generator to complete the challenge will not be accepted.
