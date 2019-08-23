@@ -1,8 +1,14 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Shift } from './shift';
 
-@Entity()
-export class User {
+@Entity({ name: 'users' })
+export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id: number;
 

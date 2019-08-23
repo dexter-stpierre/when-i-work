@@ -4,6 +4,7 @@ import { createConnection } from 'typeorm';
 const connection = createConnection();
 
 import { shiftRouter } from './api/shift';
+import userRouter from './api/users';
 
 class App {
   public express: express.Application;
@@ -21,6 +22,7 @@ class App {
 
   private routes(): void {
     this.express.use('/shifts', shiftRouter);
+    this.express.use('/users', userRouter);
     this.express.use('/*', (_: Request, res: Response) => {
       res.send('Hello World');
     });
