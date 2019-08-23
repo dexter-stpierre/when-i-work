@@ -1,5 +1,8 @@
+import dotenv from 'dotenv';
 import * as http from 'http';
 import 'reflect-metadata';
+
+dotenv.config();
 
 import App from './app';
 

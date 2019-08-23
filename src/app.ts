@@ -1,5 +1,5 @@
 import bodyParser from 'body-parser';
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import { createConnection } from 'typeorm';
 const connection = createConnection();
 
@@ -16,8 +16,17 @@ class App {
   }
 
   private mountMiddlewear(): void {
+    this.express.use(this.hasAuth);
     this.express.use(bodyParser.json());
     this.express.use(bodyParser.urlencoded({ extended: true }));
+  }
+
+  private hasAuth(req: Request, res: Response, next: NextFunction) {
+    const [, authHeader] = req.header('Authorization').split(' ');
+    if (authHeader !== process.env.API_KEY) {
+      return res.sendStatus(401);
+    }
+    next();
   }
 
   private routes(): void {
