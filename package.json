@@ -13,7 +13,7 @@
     "serve": "node dist/server.js",
     "start": "npm run serve",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "concurrently -k -p \"[{name}]\" -n \"Serve,Build\" \"npm:serve:watch\" \"npm:build:watch\""
+    "watch": "concurrently --handle-input -k -p \"[{name}]\" -n \"node,build\" \"npm:serve:watch\" \"npm:build:watch\""
   },
   "repository": {
     "type": "git",

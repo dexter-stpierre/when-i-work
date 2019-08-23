@@ -1,10 +1,14 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Shift } from './shift';
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
-  id: string;
+  public id: number;
 
-  @Column()
-  name: string;
+  @Column({ type: 'varchar' })
+  public name: string;
+
+  @OneToMany((type) => Shift, (shift) => shift.userId)
+  public shifts: Shift[];
 }

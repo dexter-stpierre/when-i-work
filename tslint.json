@@ -1,11 +1,15 @@
 {
-  "extends": [
-    "tslint:recommended"
-  ],
+  "extends": ["tslint:recommended"],
   "project": "./tsconfig.json",
   "linterOptions": {
-    "exclude": [
-      "node_modules/**"
-    ]
+    "exclude": ["node_modules/**"]
+  },
+  "rules": {
+    "quotemark": {
+      "options": ["single"]
+    },
+    "no-console": {
+      "severity": "warning"
+    }
   }
 }

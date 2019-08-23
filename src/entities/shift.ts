@@ -1,20 +1,28 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { User } from './user';
 
-@Entity()
-export class Shift {
+@Entity({ name: 'shifts' })
+export class Shift extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id: string;
+  public id: string;
 
-  @Column()
-  start: Date;
+  @Column({ type: 'date' })
+  public start: Date;
 
-  @Column()
-  end: Date;
+  @Column({ type: 'date' })
+  public end: Date;
 
-  @Column()
-  userId: number;
+  @Column({ type: 'int', name: 'user_id' })
+  public userId: number;
 
-  @Column(type => User)
-  user: User;
+  @ManyToOne((type) => User, (user) => user.shifts)
+  @JoinColumn({ name: 'user_id' })
+  public user: User;
 }
