@@ -1,6 +1,7 @@
 # When I Work Full Stack Code Challenge
 
-## Overview:
+## Overview
+
 You will be building a mini When I Work restful API! When completed, you should be able to use
 the API to view, create, edit, and delete a shift.
 Feel free to use any libraries/frameworks that will help you complete the project.
@@ -32,6 +33,7 @@ same time requirements for creating a shift also apply.
 The API should be able to delete any shift.
 
 ## Bonus
+
 You may go above and beyond by implementing any of the following features. This will allow us
 to better assess your capabilities, but is not required. Incompletion of these items will not
 negatively impact the evaluation of the challenge.

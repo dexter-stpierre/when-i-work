@@ -1,5 +1,7 @@
 import {
   BaseEntity,
+  BeforeInsert,
+  Between,
   Column,
   Entity,
   JoinColumn,
@@ -13,10 +15,10 @@ export class Shift extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id: string;
 
-  @Column({ type: 'date' })
+  @Column({ type: 'datetime' })
   public start: Date;
 
-  @Column({ type: 'date' })
+  @Column({ type: 'datetime' })
   public end: Date;
 
   @Column({ type: 'int', name: 'user_id' })
@@ -25,4 +27,23 @@ export class Shift extends BaseEntity {
   @ManyToOne((type) => User, (user) => user.shifts)
   @JoinColumn({ name: 'user_id' })
   public user: User;
+
+  @BeforeInsert()
+  public async userHasShift() {
+    const shifts = await Shift.find({
+      where: [
+        {
+          start: Between(this.start, this.end),
+          userId: this.userId,
+        },
+        {
+          end: Between(this.start, this.end),
+          userId: this.userId,
+        },
+      ],
+    });
+    if (shifts.length) {
+      throw new Error('User already has a shift at this time');
+    }
+  }
 }

@@ -15,9 +15,17 @@ export class ShiftRouter {
   }
 
   private createShift(req: Request, res: Response, next: NextFunction) {
-    console.log(req.body);
-    Shift.save(req.body);
-    res.send('Shift Created');
+    const shift = new Shift();
+    shift.start = req.body.start;
+    shift.end = req.body.end;
+    shift.userId = req.body.userId;
+    Shift.save(shift)
+      .then((savedShift) => {
+        res.send(savedShift);
+      })
+      .catch((error) => {
+        res.status(500).send(error.message);
+      });
   }
 }
 
